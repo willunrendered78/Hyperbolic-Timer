@@ -9,11 +9,19 @@ export default function CompleteScreen() {
 
   return (
     <main className="complete-screen">
-      <h1 className="title-saiyan complete-screen__title">
-        Training
-        <br />
-        complete
-      </h1>
+      <div className="complete-screen__hero">
+        <div className="bloom" aria-hidden="true">
+          <span className="bloom__glow" />
+          <span className="bloom__ring" />
+          <span className="bloom__ring" />
+          <span className="bloom__ring" />
+        </div>
+        <h1 className="title-saiyan complete-screen__title">
+          Training
+          <br />
+          complete
+        </h1>
+      </div>
       <section className="complete-screen__summary">
         <h2 className="complete-screen__workout">{workout.title}</h2>
         <dl className="complete-screen__stats">
