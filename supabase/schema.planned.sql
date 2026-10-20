@@ -1,7 +1,8 @@
 -- =====================================================================================
--- PLANNED SCHEMA: NOT APPLIED, NOT TESTED.
--- Proposed 2026-10-20. Implement together with Supabase auth in the designated Code
--- Platoon lesson. Until then the app runs on localStorage and nothing here has been run.
+-- SCHEMA: APPLIED 2026-10-20 (SQL Editor, main/production project), NOT YET TESTED.
+-- The editor reported "Success. No rows returned"; tables and RLS not yet independently
+-- verified, and RLS has not been tested with two accounts. Wire up Supabase auth and
+-- the app in the designated Code Platoon lesson. Until then the app runs on localStorage.
 --
 -- Differences from schema.sql: user_id is required and defaults to the signed-in user,
 -- tags.is_starter, a read-only starter_tags template table, a signup trigger that copies

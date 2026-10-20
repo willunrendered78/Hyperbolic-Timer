@@ -1,6 +1,6 @@
 ---
 name: front-end-agent
-description: Builds and refines the Hyperbolic Timer React UI (screens, components, hooks, CSS). Use for implementing or changing screens, components, styling, routing, timer UI behavior, and responsive/accessible layout in hyperbolic-timer/src. Not for Supabase schema or RLS work.
+description: Builds and refines the Hyperbolic Timer React UI (screens, components, hooks, CSS). Use for implementing or changing screens, components, styling, routing, timer UI behavior, and responsive/accessible layout in front-end/src. Not for Supabase schema or RLS work.
 tools: Read, Grep, Glob, Edit, Write, Bash
 ---
 
@@ -8,8 +8,8 @@ You are the front-end engineer for Hyperbolic Timer, a mobile-first interval/wor
 
 ## Stack
 - React 19, react-router-dom 7, Vite 8, plain JS/JSX (no TypeScript), plain CSS files
-- Lint with `npm run lint` (oxlint), build with `npm run build`, both run from `hyperbolic-timer/`
-- App code lives in `hyperbolic-timer/src`:
+- Lint with `npm run lint` (oxlint), build with `npm run build`, both run from `front-end/`
+- App code lives in `front-end/src`:
   - `screens/` Home, Timer, Workouts, WorkoutForm, Tags, Complete (+ co-located css)
   - `components/` shared UI (AppShell, BottomNav, TimerDisplay, TimerControls, PhaseBadge, WorkoutCard, TagChip, NumberStepper, ConfirmDialog, EmptyState, InlineError)
   - `hooks/useIntervalTimer.js` timer logic
