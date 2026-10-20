@@ -1,0 +1,98 @@
+:root {
+  --deep-navy: #081426;
+  --midnight: #102b55;
+  --electric: #2675e8;
+  --energy: #ff8a24;
+  --warm-gold: #ffc857;
+  --white: #ffffff;
+  --muted: #aab6c8;
+  --error: #f04452;
+  --success: #35c98a;
+
+  --font-display: 'Russo One', 'Impact', sans-serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-digits: 'Space Mono', ui-monospace, monospace;
+
+  /* Saiyan-style display size: scales from phone to desktop */
+  --size-display: clamp(2.5rem, 9vw + 0.5rem, 6.5rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--deep-navy);
+  color: var(--white);
+  font-family: var(--font-body);
+}
+
+/* Gold DBZ-style title: heavy, italic-skewed caps, gold fill, hard orange edge */
+.title-saiyan {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--size-display);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--warm-gold);
+  transform: skewX(-6deg);
+  text-shadow:
+    0 2px 0 var(--energy),
+    0 4px 0 #b4570d,
+    0 0 18px rgba(255, 138, 36, 0.35);
+}
+
+/* Buttons: large touch targets (min 56px) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0 1.75rem;
+  border: 0;
+  border-radius: 14px;
+  font: 800 1.0625rem/1 var(--font-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--white);
+  background: var(--midnight);
+  cursor: pointer;
+  transition: background-color 150ms ease-out, transform 100ms ease-out;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--warm-gold);
+  outline-offset: 3px;
+}
+
+.btn--primary {
+  background: var(--phase, var(--energy));
+  color: var(--deep-navy);
+}
+
+.btn--danger {
+  background: var(--error);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  .btn:active {
+    transform: none;
+  }
+}

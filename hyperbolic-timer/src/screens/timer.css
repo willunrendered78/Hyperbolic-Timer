@@ -1,0 +1,161 @@
+/* Phase drives one custom property; everything else reads it. */
+.timer-screen {
+  --phase: var(--energy);
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  justify-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem 1.25rem 2rem;
+  text-align: center;
+  background:
+    repeating-radial-gradient(
+      circle at 50% 38%,
+      transparent 0 74px,
+      color-mix(in srgb, var(--phase) 9%, transparent) 75px 77px
+    ),
+    var(--deep-navy);
+}
+
+.timer-screen[data-phase='ready'],
+.timer-screen[data-phase='work'] { --phase: var(--energy); }
+.timer-screen[data-phase='rest'] { --phase: var(--electric); }
+.timer-screen[data-phase='paused'] { --phase: var(--warm-gold); }
+
+.timer-screen__header { display: grid; gap: 0.25rem; }
+
+.timer-screen__brand {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.timer-screen__workout { margin: 0; font-size: 1.0625rem; font-weight: 600; }
+
+.phase-badge {
+  margin: 0;
+  padding: 0.6rem 2rem;
+  border-radius: 999px;
+  background: var(--phase);
+  color: var(--deep-navy);
+  font: 800 1rem/1 var(--font-body);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: background-color 300ms ease-out;
+}
+
+.phase-title { display: none; }
+
+.timer-display {
+  position: relative;
+  width: clamp(260px, 82vw, 400px);
+  aspect-ratio: 1;
+  align-self: center;
+}
+
+.timer-ring { width: 100%; height: 100%; transform: rotate(-90deg); overflow: visible; }
+
+.timer-ring circle { fill: none; stroke-width: 6; }
+.timer-ring__track { stroke: var(--midnight); }
+
+.timer-ring__arc {
+  stroke: var(--phase);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 120ms linear, stroke 300ms ease-out;
+  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--phase) 45%, transparent));
+}
+
+.timer-digits {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  font: 700 clamp(3.25rem, 17vw, 5.5rem)/1 var(--font-digits);
+  font-variant-numeric: tabular-nums;
+  color: var(--white);
+}
+
+[data-phase='paused'] .timer-digits { color: var(--muted); }
+
+.timer-screen__panel { display: grid; justify-items: center; gap: 0.5rem; width: 100%; max-width: 420px; }
+.timer-screen__round { margin: 0; color: var(--muted); font-size: 1.0625rem; }
+.timer-screen__next { margin: 0 0 1rem; color: var(--muted); font-size: 0.9375rem; }
+
+.timer-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; width: 100%; }
+.timer-controls .btn--primary { flex: 1 1 100%; }
+.timer-controls .btn--secondary { flex: 1 1 0; }
+
+/* Confirm dialog */
+.confirm {
+  width: min(92vw, 420px);
+  padding: 1.75rem;
+  border: 2px solid var(--error);
+  border-radius: 16px;
+  background: var(--midnight);
+  color: var(--white);
+}
+.confirm::backdrop { background: rgb(8 20 38 / 0.8); }
+.confirm__title { margin: 0 0 0.5rem; font: 400 1.5rem/1.2 var(--font-display); }
+.confirm__message { margin: 0 0 1.5rem; color: var(--muted); }
+.confirm__actions { display: flex; gap: 0.75rem; }
+.confirm__actions .btn { flex: 1; background-color: var(--deep-navy); }
+.confirm__actions .btn--danger { background-color: var(--error); }
+
+/* Home + complete */
+.home-screen,
+.complete-screen {
+  min-height: 100dvh;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 1.5rem;
+  padding: 2rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.home-screen__tagline { margin: 0; font-size: 1.25rem; color: var(--muted); }
+.home-screen__cta { min-width: 240px; }
+
+.complete-screen__summary { display: grid; gap: 1.25rem; width: 100%; max-width: 440px; }
+.complete-screen__workout { margin: 0; font-size: 1.5rem; }
+.complete-screen__stats { display: flex; gap: 2.5rem; margin: 0; }
+.complete-screen__stats dt { color: var(--muted); font-size: 0.875rem; }
+.complete-screen__stats dd { margin: 0.25rem 0 0; font: 700 2rem/1 var(--font-digits); }
+.complete-screen .timer-controls { justify-content: flex-start; }
+
+/* Desktop: ring left, phase word + controls right */
+@media (min-width: 900px) {
+  .timer-screen {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    align-items: center;
+    column-gap: 4rem;
+    padding: 2rem 4rem 3rem;
+    text-align: left;
+    background:
+      repeating-radial-gradient(
+        circle at 28% 55%,
+        transparent 0 110px,
+        color-mix(in srgb, var(--phase) 9%, transparent) 111px 113px
+      ),
+      var(--deep-navy);
+  }
+  .timer-screen__header { grid-column: 1 / -1; justify-self: start; }
+  .phase-badge { display: none; }
+  .timer-display { grid-column: 1; width: min(60vh, 460px); justify-self: end; }
+  .timer-screen__panel { grid-column: 2; justify-items: start; max-width: 460px; }
+  .phase-title {
+    display: block;
+    margin: 0 0 0.5rem;
+    font: 400 var(--size-display)/0.95 var(--font-display);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--phase);
+    transition: color 300ms ease-out;
+  }
+  .timer-controls { justify-content: flex-start; }
+}
