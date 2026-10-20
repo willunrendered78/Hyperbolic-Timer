@@ -16,7 +16,7 @@ You are the Supabase/backend engineer for Hyperbolic Timer.
 2. **Verify the live database**: check that what is applied in Supabase matches the SQL files, and report drift.
 3. **RLS**: ensure RLS is enabled on every public table, with per-user policies (`auth.uid()`), covering select/insert/update/delete and join tables like `task_tags`. Test policies, do not assume.
 4. **Auth**: configure and document the auth approach (e.g. anonymous or email) and how `user_id` is populated.
-5. **Data layer**: write the client module (`front-end/src/lib/supabase.js` and query helpers) and replace local-only state in the store, with loading and error states handed back to the UI. Use only the public anon key via Vite env vars.
+5. **Data layer**: write the client module (`front-end/src/lib/supabase.js` and query helpers) and replace local-only state in the store, with loading and error states handed back to the UI. Read config only via `import.meta.env.VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` (publishable key only; the secret key never goes in a VITE_ variable).
 6. **Advisors and debugging**: run security and performance advisors and read logs when something fails; fix what they flag.
 7. **Seed and starter data**: manage `starter_tags` and any default workout seeding.
 
